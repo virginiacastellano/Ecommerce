@@ -1,12 +1,13 @@
-{% extends 'app/base.html' %}
-{% load static %}
-{% block title %}Cart{% endblock title %}
+{% extends 'app/base.html' %}  {# Extendemos el template base.html #}
+{% load static %}  {# Cargamos los archivos estáticos #}
+
+{% block title %}Cart{% endblock title %}  {# Establecemos el título de la página #}
 
 {% block main-content %}
 <div class="container my-5">
     <div class="row">
         {% if cart %}
-        <h1 class="text-center mb-5">Shopping Cart</h1>
+        <h1 class="text-center mb-5">Shopping Cart</h1>  {# Título si el carrito no está vacío #}
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-body">
@@ -20,7 +21,7 @@
                             <div>
                                 <h5>{{ item.product.title }}</h5>
                                 <p class="mb-2 text-muted small">{{ item.product.description }}</p>
-                                {% comment %} botones de incremento y decremento del carrito {% endcomment %}
+                                {# Botones de incremento y decremento del carrito #}
                                 <div class="my-3">
                                     <label for="quantity">Quantity: </label>
                                     <a class="minus-cart btn" pid="{{ item.product.id }}"><i class="fas fa-minus-square fa-lg"></i></a>
@@ -60,7 +61,7 @@
             </div>
         </div>
         {% else %}
-        <h1 class="text-center mb-5">Cart is Empty</h1>
+        <h1 class="text-center mb-5">Cart is Empty</h1>  {# Título si el carrito está vacío #}
         {% endif %}
     </div>
 </div>

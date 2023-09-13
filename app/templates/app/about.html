@@ -3,20 +3,24 @@
 {% block title %}About{% endblock title %}
 
 {% block banner_slider %}
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" >
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{% static 'app/img/portada/b2.png' %}" class="d-block w-100" alt="banner-img">
-      </div>
-      <div class="carousel-item ">
-        <img src="{% static 'app/img/portada/b1.png' %}" class="d-block w-100" alt="banner-img">
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'app/img/portada/b3.png' %}" class="d-block w-100" alt="banner-img">
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'app/img/portada/b4.png' %}" class="d-block w-100" alt="banner-img">
-      </div>
+        <!-- Primer slide del carrusel -->
+        <div class="carousel-item active">
+            <img src="{% static 'app/img/portada/b2.png' %}" class="d-block w-100" alt="banner-img">
+        </div>
+        <!-- Segundo slide del carrusel -->
+        <div class="carousel-item">
+            <img src="{% static 'app/img/portada/b1.png' %}" class="d-block w-100" alt="banner-img">
+        </div>
+        <!-- Tercer slide del carrusel -->
+        <div class="carousel-item">
+            <img src="{% static 'app/img/portada/b3.png' %}" class="d-block w-100" alt="banner-img">
+        </div>
+        <!-- Cuarto slide del carrusel -->
+        <div class="carousel-item">
+            <img src="{% static 'app/img/portada/b4.png' %}" class="d-block w-100" alt="banner-img">
+        </div>
     </div>
 </div>
 {% endblock banner_slider %}

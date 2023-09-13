@@ -1,32 +1,29 @@
-{% extends 'app/base.html' %}
-{% load static %}
-{% block title %}Update Address{% endblock title %}
+{% extends 'app/base.html' %} {# Extiende la plantilla base de la aplicación #}
+{% load static %} {# Carga archivos estáticos como CSS y JavaScript #}
+{% block title %}Update Address{% endblock title %} {# Define el título de la página #}
 
-
-{% block main-content %}
+{% block main-content %} {# Comienza el bloque principal del contenido #}
 <div class="container my-5">
     <div class="row">
-        <h3>Welcome <span class="text-capitalize">{{request.user}}</span></h3>
+        <h3>Welcome <span class="text-capitalize">{{request.user}}</span></h3> {# Saluda al usuario logueado #}
     </div> 
     <div class="col-sm-8 offset-sm-1">
-        <form acction="" method="post">
-            {% csrf_token %}
+        <form acction="" method="post"> {# Comienza un formulario con el método POST #}
+            {% csrf_token %} {# Agrega un token CSRF para protección contra ataques #}
             {% for fm in form %}
-                {{ fm.label_tag }} {{ fm }} <small class="text-danger">{{ fm.errors|striptags }}</small> <br>
+                {{ fm.label_tag }} {{ fm }} <small class="text-danger">{{ fm.errors|striptags }}</small> <br> {# Itera sobre los campos del formulario, muestra etiquetas, campos y errores #}
             {% endfor %}
             <div class="col-12 mt-3">
-                <button type="submit" class="btn btn-primary">Ubdate</button>
-                <a href="{% url 'address' %}" type="button" class="btn btn-danger">Back</a>
+                <button type="submit" class="btn btn-primary">Update</button> {# Botón para enviar el formulario #}
+                <a href="{% url 'address' %}" type="button" class="btn btn-danger">Back</a> {# Enlace de retroceso #}
             </div>
 
             {% if form.non_field_errors %}
             {% for error in form.non_field_errors %}
-            <p class="alert alert-danger my-3">{{ error }}</p>
+            <p class="alert alert-danger my-3">{{ error }}</p> {# Muestra errores generales del formulario #}
             {% endfor %}
             {% endif %}
-
         </form>
     </div>
-        
 </div>
-{% endblock main-content %}
+{% endblock main-content %} {# Termina el bloque principal del contenido #}

@@ -2,7 +2,6 @@
 {% load static %}
 {% block title %}Search Result{% endblock title %}
 
-
 {% block main-content %}
 <div class="container my-5">
   <div class="row">
@@ -12,11 +11,14 @@
               <div class="col-sm-4 text-center mb-4 hover-shadow">
                 <a href="{% url 'product-detail' prod.id %}" class="btn">
                     <div>
-                        <img src="{{prod.product_image.url}}" width="300xp" heigth="200xp"/>
+                        <!-- Imagen del producto -->
+                        <img src="{{prod.product_image.url}}" width="300px" style="max-width: 100%;" />
+                        <!-- Título del producto -->
                         <div class="fw-bold">{{prod.title}}</div>
+                        <!-- Precio con descuento y precio original -->
                         <div class="fw-bold text-danger">
-                            $. {{prod.discounted_price}}/-
-                            <small class="fw-light text-decoration-line-through">{{prod.selling_price}}</small>
+                            $. {{prod.discounted_price}}/- <!-- Precio con descuento -->
+                            <small class="fw-light text-decoration-line-through">{{prod.selling_price}}</small> <!-- Precio original tachado -->
                         </div>
                     </div>
                 </a>

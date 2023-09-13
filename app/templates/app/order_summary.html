@@ -1,41 +1,41 @@
-{% extends 'app/base.html' %}
-{% load static %}
+{% extends 'app/base.html' %}  <!-- Extendemos el layout base de la aplicación -->
+{% load static %}  <!-- Cargamos archivos estáticos, como CSS y JS -->
 
-{% block title %}Pago Exitoso{% endblock title %}
+{% block title %}Pago Exitoso{% endblock title %}  <!-- Título de la página -->
 
 {% block main-content %}
 <div class="container">
     <div class="row mt-5">
         <div class="col-sm-12">
             <div class="alert alert-success">
-                <h2>Payment Successful</h2>
-                <p>Your payment has been successfully processed. Thank you for choosing our service!</p>
+                <h2>Payment Successful</h2>  <!-- Título de éxito del pago -->
+                <p>Your payment has been successfully processed. Thank you for choosing our service!</p>  <!-- Mensaje de éxito -->
             </div>
-            <h3>Order Summary</h3>
+            <h3>Order Summary</h3>  <!-- Título del resumen del pedido -->
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
+                        <th>Product</th>  <!-- Encabezado de la columna de productos -->
+                        <th>Quantity</th>  <!-- Encabezado de la columna de cantidad -->
+                        <th>Price</th>  <!-- Encabezado de la columna de precio -->
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Iteramos a través de los elementos del carrito para mostrar los detalles del pedido -->
                     {% for item in cart_items %}
                     <tr>
-                        <td>{{ item.product.title }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>${{ item.product.discounted_price }}</td>
+                        <td>{{ item.product.title }}</td>  <!-- Nombre del producto -->
+                        <td>{{ item.quantity }}</td>  <!-- Cantidad del producto -->
+                        <td>${{ item.product.discounted_price }}</td>  <!-- Precio con descuento del producto -->
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <p class="fw-bold">Total Cost: ${{ totalamount }}</p>
+            <p class="fw-bold">Total Cost: ${{ totalamount }}</p>  <!-- Costo total del pedido -->
 
-            <!-- Agregar un botón "Home" -->
+            <!-- Agregamos un botón "Home" para redirigir al usuario a la página de inicio -->
             <a href="/" class="btn btn-primary">Home</a>
         </div>
     </div>
 </div>
 {% endblock main-content %}
-

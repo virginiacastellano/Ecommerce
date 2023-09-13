@@ -1,6 +1,6 @@
 {% extends 'app/base.html' %}
 {% load static %}
-{% block title %}Coustomer Registration{% endblock title %}
+{% block title %}Customer Registration{% endblock title %}
 
 {% block main-content %}
 <div class="container">
@@ -15,15 +15,15 @@
                     {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
                     <br>
                 {% endfor %}
-                <input type="submit" value="submit" class="btn btn-primary"> <br>
+                <input type="submit" value="Submit" class="btn btn-primary"> <br> {# Corregir 'submit' #}
 
                 <div class="text-center text-primary fw-bold">
-                    <small>Existing user? <a href='{% url 'login' %}' class="text-danger"> Login now</a></samall>
+                    <small>Existing user? <a href='{% url 'login' %}' class="text-danger"> Login now</a></small>
                 </div>
 
                 {% if form.non_field_errors %}
-                   {% for error in orm.non_field_errors %}
-                        <p class="alert alert-denger my-3">{{error}}</p>
+                   {% for error in form.non_field_errors %} {# Cambiar 'orm' a 'form' #}
+                        <p class="alert alert-danger my-3">{{error}}</p> {# Corregir 'alert-denger' a 'alert-danger' #}
                    {% endfor %} 
                 {% endif %}
 

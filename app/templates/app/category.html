@@ -6,20 +6,27 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-sm-3">
+            <!-- Barra lateral con la lista de categorías -->
             <div class="list-group">
                 {% for val in title %}
+                    <!-- Crea un enlace para cada categoría -->
                     <a href="{% url 'category-title' val.title %}" class="list-group-item list-group-item-action" aria-current="true">{{val.title}}</a>
                 {% endfor %}
             </div>
         </div>
         <div class="col-sm-9">
+            <!-- Contenedor principal de productos -->
             <div class="row">
                 {% for prod in product %}
+                <!-- Itera a través de los productos -->
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <!-- Crea un enlace para cada producto -->
                     <a href="{% url 'product-detail' prod.id %}" class="btn">
                         <div class="text-center">
                             <img src="{{prod.product_image.url}}" alt="{{prod.title}}" width="200px" height="300px" />
+                            <!-- Muestra el título del producto -->
                             <div class="fw-bold">{{prod.title}}</div>
+                            <!-- Muestra el precio descontado y el precio original -->
                             <div class="fw-bold text-danger">
                                 $.{{prod.discounted_price}}/-
                                 <small class="fw-light text-decoration-line-through">$.{{prod.selling_price}}</small>
