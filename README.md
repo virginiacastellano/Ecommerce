@@ -17,9 +17,9 @@ python -m venv myenv
 
 - En Windows:
 
-  ```shell
-  myenv\Scripts\activate
-  ```
+```shell
+myenv\Scripts\activate
+```
 
 ### 3. Instalar Django:
 
