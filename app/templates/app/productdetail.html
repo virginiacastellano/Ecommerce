@@ -1,0 +1,40 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Category{% endblock title %}
+
+{% block main-content %}
+<div class="container my-5">
+    <div class="row flex justify-content-between">
+        <div class="img2 col-lg-5">
+            <img src="{{product.product_image.url}}" class="image col-xs-6 col-sm-12 mt-3 text-sm-center w-100 h-75" alt="">
+        </div>
+        <div class="productdetail col-lg-5">
+            <h1 style="font-family: georgia; font-size:50xpx">{{product.title}}</h1>
+            <h5>$. {{product.discounted_price}}/-</h5>
+            <small class="text-text-decoration-line-through text-muted fs-5"><del>$.{{product.selling_price}}/-</small></del>
+            <br><br><h4>Product Features</h4>
+                <ul class="fs-5" style="font-family: rajdhani;">
+                    <li>{{product.description}}</li>
+                    <li> Composution: {{product.composition}}</li>
+                    <li> Use: {{product.prodapp}}</li>
+                </ul>
+                {% comment %} <form action="/add-to-cart"  class="d-inline">
+                    <input type="hidden" name="prod_id" value={{product.id}} /> 
+                    <button type="submit" class="btn btn-primary shadow px-5 py-2">Add to Cart</button>
+                </form> {% endcomment %}
+                <form action="/add-to-cart" class="d-inline">
+                    {% if request.user.is_authenticated %}
+                        <!-- Si el usuario está autenticado, mostrar el campo oculto con el id del producto -->
+                        <input type="hidden" name="prod_id" value="{{ product.id }}" />
+                        <button type="submit" class="btn btn-primary shadow px-5 py-2">Add to Cart</button>
+                    {% else %}
+                        <!-- Si el usuario no está autenticado, mostrar un enlace al inicio de sesión -->
+                        <a href="{% url 'login' %}" class="btn btn-primary shadow px-5 py-2">Log in to Add to Cart</a>
+                    {% endif %}
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

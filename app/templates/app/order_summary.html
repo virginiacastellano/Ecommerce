@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Pago Exitoso{% endblock title %}
+
+{% block main-content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-sm-12">
+            <div class="alert alert-success">
+                <h2>Payment Successful</h2>
+                <p>Your payment has been successfully processed. Thank you for choosing our service!</p>
+            </div>
+            <h3>Order Summary</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                    <tr>
+                        <td>{{ item.product.title }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.product.discounted_price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p class="fw-bold">Total Cost: ${{ totalamount }}</p>
+
+            <!-- Agregar un botón "Home" -->
+            <a href="/" class="btn btn-primary">Home</a>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}
+

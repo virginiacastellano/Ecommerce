@@ -1,0 +1,70 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}About{% endblock title %}
+
+{% block banner_slider %}
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'app/img/portada/b2.png' %}" class="d-block w-100" alt="banner-img">
+      </div>
+      <div class="carousel-item ">
+        <img src="{% static 'app/img/portada/b1.png' %}" class="d-block w-100" alt="banner-img">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/img/portada/b3.png' %}" class="d-block w-100" alt="banner-img">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/img/portada/b4.png' %}" class="d-block w-100" alt="banner-img">
+      </div>
+    </div>
+</div>
+{% endblock banner_slider %}
+
+{% block main-content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+            <h2 class="display-4 mb-4">Welcome to GUCCI</h2>
+            <p class="lead fs-5">Where Luxury Meets Innovation</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <p class="fs-5">At GUCCI, we redefine the boundaries of fashion, bringing you an unmatched experience that blends quality, style, and luxury.</p>
+        </div>
+        <div class="col-lg-6">
+            <p class="fs-5">Our collection fuses exceptional craftsmanship with cutting-edge design, creating each GUCCI piece as a masterpiece in itself. We meticulously attend to every detail, upholding our brand's hallmark for decades.</p>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-8 text-center">
+            <h2 class="display-4 mb-4">Discover Your Unique Style</h2>
+            <p class="lead fs-5">Explore our latest creations, from tailored suits to must-have accessories, and make your fashion statement with GUCCI.</p>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-8 text-center">
+            <h2 class="display-4 mb-4">Our Mission</h2>
+            <p class="lead fs-5">Elevating Fashion to New Heights</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <p class="fs-5">At GUCCI, we are on a mission to redefine high-quality fashion and luxury. We aim to be your top choice for distinction and exclusivity in style.</p>
+        </div>
+        <div class="col-lg-6">
+            <p class="fs-5">Our mission stands on three key pillars:</p>
+            <ul class="fs-5">
+                <li>Impeccable Craftsmanship: We believe that true beauty lies in the details. Our skilled artisans tirelessly create garments and footwear that exceed all quality and craftsmanship expectations.</li>
+                <li>Constant Innovation: As the fashion world evolves, so do we. We are committed to leading in design and style, staying at the forefront of the latest trends and technologies.</li>
+                <li>Unforgettable Customer Experience: Your satisfaction is our top priority. At GUCCI, we aim to provide an exceptional service and a shopping experience that is truly unique and memorable.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

@@ -1,0 +1,68 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}checkout{% endblock title %}
+ 
+{% block main-content %}
+<div class="container">
+    {% if messages %}
+        {% for msg in messages %}
+        <!-- Muestra mensajes de alerta si los hay -->
+        <div class="alert alert-{{ msg.tags }}" role="alert">
+            {{ msg }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row mt-5">
+        <div class="col sm-6">
+            <h4>Order Summary</h4>
+            <hr>
+            {% for item in cart_items %}
+            <!-- Itera a través de los elementos del carrito -->
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5>Product: {{item.product.title}}</h5>
+                    <p>Quantity: {{item.quantity}}</p>
+                    <p class="fw-bold">Price: {{item.product.discounted_price}}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <p class="fw-bold">Total Cost +$. 40= {{totalamount}}</p>
+            <small>Shipping Terms: Estimated delivery times may vary. Shipping fees apply. Track orders with provided number. Review Returns Policy. Ensure accurate address. International orders may have additional fees. Contact for lost packages. Agree to these terms by ordering.</small>
+        </div>
+        <div class="col-sm-4 offset-sm-1">
+            <h4>Select Shipping Address</h4>
+            <hr>
+            <form method="post" id="myform">
+                {% csrf_token %}
+                {% for ad in add %}
+                <!-- Itera a través de las direcciones de envío -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5>{{ad.name}}</h5>
+                        <p>Mobile: {{ad.mobile}}</p>
+                        <p>{{ad.locality}} {{ad.city}} {{ad.state}} - {{ad.zipcode}}</p>
+                    </div>
+                </div>
+                <div class="form-check mt-2 mb-5">
+                    <!-- Crea un formulario de selección de dirección -->
+                    <input class="form-check-input" type="radio" name="custid" id="custadd{{forloop.counter}}" value="{{ad.id}}">
+                    <label class="form-check-label fw-bold" for="custadd{{forloop.counter}}">
+                        Address: {{forloop.counter}}</label>
+                </div>
+                {% endfor %}
+                    <div class="form-check mb-3">
+                        <label for="totamount" class="form-label">Total Amount</label>
+                        <!-- Muestra el monto total -->
+                        <input type="number" class="form-control" name="totamount" value="{{ totalamount }}" readonly>
+                    </div>
+              
+                </div>
+                <div class="text-center">
+                    <a href="{% url 'order_summary' %}" class="btn btn-warning mt-3 px-5 fw-bold">Go to Checkout</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}
+
