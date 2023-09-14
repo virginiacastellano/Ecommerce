@@ -83,7 +83,7 @@
                 </ul>
             </li>
             <li class="nav-item mx-2"> 
-                <a href="{% url 'checkout' %}" class="nav-link text-white">Cart</a>
+                <a href="{% url 'showcart' %}" class="nav-link text-white"><span class="badge bg-danger">{% if totalitem > 0 %}{{totalitem}}{% endif %}</span> Cart</a>
             </li>
             <!-- Opciones adicionales si el usuario no está autenticado -->
             {% else %}

@@ -33,8 +33,18 @@
             </table>
             <p class="fw-bold">Total Cost: ${{ totalamount }}</p>  <!-- Costo total del pedido -->
 
-            <!-- Agregamos un botón "Home" para redirigir al usuario a la página de inicio -->
-            <a href="/" class="btn btn-primary">Home</a>
+            <!-- Barra de progreso ficticia -->
+            <div class="progress mx-auto">
+                <div class="progress-bar progress-bar-striped progress-bar-animated text-center" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
+                    Shipment in progress
+                </div>
+            </div>
+
+            <!-- Agregamos el botón "Home" con el estilo deseado -->
+            <div class="d-grid gap-2 mt-3">
+                <a href="/" class="btn btn-outline-success btn-lg">Home</a>
+            </div>
+
         </div>
     </div>
 </div>

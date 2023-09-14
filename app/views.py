@@ -11,20 +11,32 @@ from django.utils.decorators import method_decorator
 
 # Función para la página de inicio
 def home(request):
-    return render(request, "app/home.html")
+    totalitem=0
+    if request.user.is_authenticated:
+        totalitem= len(Cart.objects.filter(user=request.user))
+    return render(request, "app/home.html",locals())
 
 # Función para la página "Acerca de"
 def about(request):
-    return render(request, "app/about.html")
+    totalitem=0
+    if request.user.is_authenticated:
+        totalitem= len(Cart.objects.filter(user=request.user))
+    return render(request, "app/about.html",locals())
 
 # Función para la página de contacto, requiere inicio de sesión
 @login_required
 def contact(request):
-    return render(request, "app/contact.html")
+    totalitem=0
+    if request.user.is_authenticated:
+        totalitem= len(Cart.objects.filter(user=request.user))
+    return render(request, "app/contact.html", locals())
 
 # Clase para ver productos por categoría
 class CategoryView(View):
     def get(self, request, val):
+        totalitem=0
+        if request.user.is_authenticated:
+            totalitem= len(Cart.objects.filter(user=request.user))
         product = Product.objects.filter(category=val)
         title = Product.objects.filter(category=val).values('title')
         return render(request, "app/category.html", locals())
@@ -34,17 +46,26 @@ class CategoryTitle(View):
     def get(self, request, val):
         product = Product.objects.filter(title=val)
         title = Product.objects.filter(category=product[0].category).values('title')
+        totalitem=0
+        if request.user.is_authenticated:
+            totalitem= len(Cart.objects.filter(user=request.user))
         return render(request, "app/category.html", locals())
 
 # Clase para ver detalles de un producto
 class ProductDetail(View):
     def get(self, request, pk):
         product = Product.objects.get(pk=pk)
+        totalitem=0
+        if request.user.is_authenticated:
+             totalitem= len(Cart.objects.filter(user=request.user))
         return render(request, "app/productdetail.html", locals())
 
 # Clase para el registro de clientes
 class CustomerRegistrationView(View):
     def get(self, request):
+        totalitem=0
+        if request.user.is_authenticated:
+            totalitem= len(Cart.objects.filter(user=request.user))
         form = CustomerRegistrationForm()
         return render(request, "app/customerregistration.html", locals())
 
@@ -52,9 +73,9 @@ class CustomerRegistrationView(View):
         form = CustomerRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, '¡Felicidades! Usuario registrado con éxito')
+            messages.success(request, 'Congratulations! Successfully registered user')
         else:
-            messages.warning(request, "Datos de entrada inválidos")
+            messages.warning(request, "Invalid input data")
         return render(request, "app/customerregistration.html", locals())
 
 # Clase para ver el perfil de un cliente, requiere inicio de sesión
@@ -62,6 +83,9 @@ class CustomerRegistrationView(View):
 class ProfileView(View):
     def get(self, request):
         form = CustomerProfileForm()
+        totalitem=0
+        if request.user.is_authenticated:
+            totalitem= len(Cart.objects.filter(user=request.user))
         return render(request, "app/profile.html", locals())
 
     def post(self, request):
@@ -76,21 +100,27 @@ class ProfileView(View):
             zipcode = form.cleaned_data['zipcode']
             reg = Customer(user=user, name=name, locality=locality, mobile=mobile, city=city, state=state, zipcode=zipcode)
             reg.save()
-            messages.success(request, "¡Felicidades! Perfil guardado con éxito")
+            messages.success(request, "Congratulations! Profile successfully saved")
         else:
-            messages.warning(request, "Datos de entrada inválidos")
+            messages.warning(request, "Invalid input data")
         return render(request, "app/profile.html", locals())
 
 # Función para ver las direcciones de un cliente, requiere inicio de sesión
 @login_required
 def address(request):
     add = Customer.objects.filter(user=request.user)
+    totalitem=0
+    if request.user.is_authenticated:
+        totalitem= len(Cart.objects.filter(user=request.user))
     return render(request, "app/address.html", locals())
 
 # Clase para actualizar una dirección de cliente, requiere inicio de sesión
 @method_decorator(login_required, name='dispatch')
 class updateAddress(View):
     def get(self, request, pk):
+        totalitem=0
+        if request.user.is_authenticated:
+            totalitem= len(Cart.objects.filter(user=request.user))
         add = Customer.objects.get(pk=pk)
         form = CustomerProfileForm(instance=add)
         return render(request, "app/updateAddress.html", locals())
@@ -106,9 +136,9 @@ class updateAddress(View):
             add.state = form.cleaned_data['state']
             add.zipcode = form.cleaned_data['zipcode']
             add.save()
-            messages.success(request, "¡Felicidades! Perfil guardado con éxito")
+            messages.success(request, "Congratulations! Profile successfully saved")
         else:
-            messages.warning(request, "Datos de entrada inválidos")
+            messages.warning(request, "Invalid input data")
         return redirect('address')
 
 # Función para agregar productos al carrito, requiere inicio de sesión
@@ -137,12 +167,18 @@ def show_cart(request):
         value = p.quantity * p.product.discounted_price
         amount = amount + value
     totalamount = amount + 40
+    totalitem=0
+    if request.user.is_authenticated:
+        totalitem= len(Cart.objects.filter(user=request.user))
     return render(request, "app/addtocart.html", locals())
 
 # Clase para la página de pago, requiere inicio de sesión
 @method_decorator(login_required, name='dispatch')
 class checkout(View):
     def get(self, request):
+        totalitem=0
+        if request.user.is_authenticated:
+            totalitem= len(Cart.objects.filter(user=request.user))
         user = request.user
         add = Customer.objects.filter(user=user)
         cart_items = Cart.objects.filter(user=user)
@@ -158,6 +194,9 @@ class checkout(View):
 # Función para ver un resumen de la orden, requiere inicio de sesión
 @login_required
 def order_summary(request):
+    totalitem=0
+    if request.user.is_authenticated:
+        totalitem= len(Cart.objects.filter(user=request.user))
     user = request.user
     cart_items = Cart.objects.filter(user=user)
     totalamount = 0
