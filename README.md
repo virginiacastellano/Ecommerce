@@ -42,6 +42,11 @@ Una vez que las bibliotecas están instaladas, puedes configurar el proyecto de 
 ```shell
 django-admin startproject ec
 ```
+### 1. Crear la Aplicación:
+
+```shell
+django-admin startapp app
+```
 
 Esto creará un nuevo proyecto llamado "ec". Puedes elegir el nombre que prefieras.
 
